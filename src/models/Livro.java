@@ -47,6 +47,12 @@ public class Livro {
         observadores.remove(observador);
     }
 
+    public void notificarObservadores() {
+        for (IObservadorLivro obs : observadores) {
+            obs.notificar(this);
+        }
+    }
+
     public List<Reserva> getReservas() {
         return reservas;
     }
@@ -77,9 +83,14 @@ public class Livro {
         exemplares.remove(exemplar);
     }
 
-    public void notificarObservadores() {
-        for (IObservadorLivro obs : observadores) {
-            obs.notificar(this);
+      
+    public Exemplar obterExemplarDisponivel() {
+        for (Exemplar exemplar : exemplares) {
+            if (exemplar.isDisponivel()) {
+                return exemplar;
+            }
         }
+        return null; 
     }
+    
 }

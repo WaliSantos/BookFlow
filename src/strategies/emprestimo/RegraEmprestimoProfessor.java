@@ -1,6 +1,6 @@
 package src.strategies.emprestimo;
 import src.models.Livro;
-import src.models.Repositorio;
+// import src.models.Repositorio;
 import src.models.usuarios.Usuario;
 
 public class RegraEmprestimoProfessor implements IRegraEmprestimo {
@@ -10,7 +10,7 @@ public class RegraEmprestimoProfessor implements IRegraEmprestimo {
     }
 
     @Override
-    public boolean podeEmprestar(Livro livro, Usuario usuario, Repositorio repositorio) {
+    public boolean podeEmprestar(Livro livro, Usuario usuario) {
         // implementação da regra de empréstimo para professores
         return true;
     }

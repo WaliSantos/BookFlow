@@ -2,6 +2,7 @@ package src.models.usuarios;
 
 import src.models.Livro;
 import src.observers.IObservadorLivro;
+import src.strategies.emprestimo.IRegraEmprestimo;
 
 public class Professor extends Usuario implements IObservadorLivro {
     private int totalNotificacoes = 0;
@@ -20,5 +21,9 @@ public class Professor extends Usuario implements IObservadorLivro {
 
     public int getTotalNotificacoes() {
         return totalNotificacoes;
+    }
+
+    public IRegraEmprestimo getRegraEmprestimo() {
+        return regraEmprestimo;
     }
 }
