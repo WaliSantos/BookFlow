@@ -2,7 +2,6 @@ package src.models;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import src.observers.IObservadorLivro;
 
 public class Livro {
@@ -83,7 +82,10 @@ public class Livro {
         exemplares.remove(exemplar);
     }
 
-      
+    public int obterQuantidadeExemplares() {
+        return exemplares.size();
+    }    
+    
     public Exemplar obterExemplarDisponivel() {
         for (Exemplar exemplar : exemplares) {
             if (exemplar.isDisponivel()) {

@@ -18,8 +18,15 @@ public class Emprestimo {
     public Usuario getUsuario() {
         return usuario;
     }
-    public Exemplar getExemplar() { return exemplar;
-    }  
+
+    public Exemplar getExemplar() { 
+        return exemplar;
+    }
+
+    public Livro getLivro() {
+        return exemplar.getLivro();
+    }
+
     public int getPrazoEmprestimo() {
         return prazoEmprestimo;
     }

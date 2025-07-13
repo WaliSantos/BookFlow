@@ -6,6 +6,8 @@ import src.models.Livro;
 import src.models.usuarios.Usuario;
 
 public class ServicoEmprestimo {
+    public ServicoEmprestimo() {
+    }
     public boolean realizarEmprestimo(Usuario usuario, Livro livro) {
         IRegraEmprestimo regra = usuario.getRegraEmprestimo();
 

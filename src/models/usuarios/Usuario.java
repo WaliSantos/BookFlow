@@ -1,11 +1,11 @@
 package src.models.usuarios;
 
-import src.strategies.emprestimo.IRegraEmprestimo;
-import src.models.Emprestimo;
-import src.models.Reserva;
-
 import java.util.ArrayList;
 import java.util.List;
+import src.models.Emprestimo;
+import src.models.Livro;
+import src.models.Reserva;
+import src.strategies.emprestimo.IRegraEmprestimo;
 public class Usuario {
     private String nome;
     private String codigo;
@@ -34,5 +34,24 @@ public class Usuario {
         emprestimosAtuais.add(emprestimo);
     }
 
-    
+    public List<Emprestimo> getEmprestimosAtuais() {
+        return emprestimosAtuais;
+    }
+
+    public List<Emprestimo> getEmprestimosPassados() {
+        return EmprestimoPassados;
+    }
+
+    public List<Reserva> getReservas() {
+        return reservas;
+    }
+
+    public boolean temReservaParaLivro(Livro livro) {
+        for (Reserva reserva : reservas) {
+            if (reserva.getLivro().equals(livro)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
