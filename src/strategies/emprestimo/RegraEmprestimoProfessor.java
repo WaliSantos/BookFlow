@@ -34,6 +34,6 @@ public class RegraEmprestimoProfessor implements IRegraEmprestimo {
 
     // 2: O usuário não estiver “devedor” com livros em atraso;
     public boolean verificarUsuarioSemDividas(Usuario usuario) {
-        return usuario.getEmprestimosAtuais().isEmpty();
+        return usuario.isDevedor() != true; 
     }
 }

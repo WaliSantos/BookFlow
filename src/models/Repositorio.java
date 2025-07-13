@@ -12,7 +12,6 @@ public class Repositorio {
     private List<Livro> livros = new ArrayList<>();
 
     private Repositorio() {
-        // Constructor privado para evitar instanciación externa
     }
     public static Repositorio getInstancia() {
         if (instancia == null) {
@@ -37,4 +36,15 @@ public class Repositorio {
         }
         return null; 
     }
+    public void adicionarUsuario(Usuario usuario) {
+        if (usuario != null && !usuarios.contains(usuario)) {
+            usuarios.add(usuario);
+        }
+    }
+    public void adicionarLivro(Livro livro) {
+        if (livro != null && !livros.contains(livro)) {
+            livros.add(livro);
+        }
+    }
+    
 }

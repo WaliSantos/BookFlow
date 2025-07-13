@@ -22,7 +22,6 @@ public class RegraEmprestimoGraducao implements IRegraEmprestimo {
 
     @Override
     public boolean podeEmprestar(Livro livro,Usuario usuario) {  
-        // Implementação da regra de empréstimo para alunoGraduação
         if (!verificarExemplaresDisponiveis(livro)) {
             return false; // Não há exemplares disponíveis
         }
@@ -48,12 +47,12 @@ public class RegraEmprestimoGraducao implements IRegraEmprestimo {
 
     // 2: O usuário não estiver “devedor” com livros em atraso;
     public boolean verificarUsuarioSemDividas(Usuario usuario) {
-        return usuario.getEmprestimosAtuais().isEmpty();
+        return usuario.isDevedor() != true; 
     }
     
     // 3: O usuário seguir as regras específicas referentes à quantidade máxima de livros que podem ser emprestados
     public boolean verificarQuantidadeMaximaLivros(Usuario usuario) {
-        return usuario.getEmprestimosAtuais().size() <= 2; // Exemplo: máximo de 2 livros
+        return usuario.getEmprestimosAtuais().size() < 2; 
     }
     
     // 4: A quantidade de reservas existentes do livro deve ser menor do que a quantidade de exemplares disponíveis, desde que o usuário não tenha uma reserva para esse livro;
@@ -70,8 +69,8 @@ public class RegraEmprestimoGraducao implements IRegraEmprestimo {
 
     // 5: Se a quantidade de reservas for igual ou superior à de exemplares disponíveis, o empréstimo será permitido apenas se uma das reservas for do usuário;
     public boolean verificarReservasUsuario(Livro livro, Usuario usuario) {
-        int reservas = livro.getReservas().size();
-        int exemplares = livro.obterQuantidadeExemplares();
+        int reservas = usuario.getReservas().size();
+        int exemplares = livro.getExemplares().size();
 
         if (reservas >= exemplares) {
             return usuario.temReservaParaLivro(livro);
@@ -82,10 +81,10 @@ public class RegraEmprestimoGraducao implements IRegraEmprestimo {
     // 6: O usuário não pode ter nenhum empréstimo em andamento de um exemplar desse mesmo livro.
     public boolean verificarEmprestimosAtuais(Usuario usuario, Livro livro) {
         for (Emprestimo emprestimo : usuario.getEmprestimosAtuais()) {
-            if (emprestimo.getLivro().equals(livro)) {
-                return false; // O usuário já tem um empréstimo em andamento desse livro
+            if (emprestimo.getExemplar().getLivro().equals(livro)) {
+                return false; 
             }
         }
-        return true; // O usuário não tem empréstimos em andamento desse livro
+        return true; 
     }
 }

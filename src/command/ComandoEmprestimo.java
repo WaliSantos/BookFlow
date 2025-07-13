@@ -1,7 +1,7 @@
 package command;
 import models.Livro;
 import models.usuarios.Usuario;
-import strategies.emprestimo.ServicoEmprestimo;
+import services.ServicoEmprestimo;
 import models.Repositorio;
 
 public class ComandoEmprestimo implements IComando {

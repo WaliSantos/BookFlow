@@ -10,16 +10,18 @@ public class Livro {
     private String titulo;
     private String autor;
     private String editora;
+    private String edicao;
     private int anoPublicacao;
 
     private List<IObservadorLivro> observadores = new ArrayList<>();
     private List<Reserva> reservas = new ArrayList<>();
     private List<Exemplar> exemplares = new ArrayList<>();
 
-    public Livro(String codigo, String titulo, String autor, String editora, int anoPublicacao) {
+    public Livro(String codigo, String titulo, String editora , String autor, String edicao, int anoPublicacao) {
         this.codigo = codigo;
         this.titulo = titulo;
         this.autor = autor;
+        this.edicao = edicao;
         this.editora = editora;
         this.anoPublicacao = anoPublicacao;
     }
@@ -35,6 +37,9 @@ public class Livro {
     }
     public String getEditora() {
         return editora;
+    }
+    public String getEdicao() {
+        return edicao;
     }
     public int getAnoPublicacao() {
         return anoPublicacao;
@@ -82,8 +87,7 @@ public class Livro {
     public void removerExemplar(Exemplar exemplar) {
         exemplares.remove(exemplar);
     }
-
-      
+ 
     public Exemplar obterExemplarDisponivel() {
         for (Exemplar exemplar : exemplares) {
             if (exemplar.isDisponivel()) {

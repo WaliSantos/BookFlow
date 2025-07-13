@@ -42,7 +42,9 @@ public class Usuario {
     public void adicionarEmprestimoAtual(Emprestimo emprestimo) {
         emprestimosAtuais.add(emprestimo);
     }
-
+    public List<Reserva> getReservas(){
+        return reservas;
+    }
     public void adicionarReserva(Livro livro) {
         Reserva reserva = new Reserva(this, livro);
         reservas.add(reserva);
@@ -51,6 +53,23 @@ public class Usuario {
 
     public void removerReserva(Reserva reserva) {
         reservas.remove(reserva);
+    }
+    public boolean temReservaParaLivro(Livro livro) {
+        for (Reserva reserva : reservas) {
+            if (reserva.getLivro().equals(livro)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean isDevedor(){
+        for (Emprestimo emprestimo : emprestimosAtuais) {
+            if (emprestimo.isAtrasado()) {
+                return true;
+            }
+        }
+        return false;
     }
 
     

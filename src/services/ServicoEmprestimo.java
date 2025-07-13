@@ -1,9 +1,10 @@
-package strategies.emprestimo;
+package services;
 
 import models.Emprestimo;
 import models.Exemplar;
 import models.Livro;
 import models.usuarios.Usuario;
+import strategies.emprestimo.IRegraEmprestimo;
 
 public class ServicoEmprestimo {
     public ServicoEmprestimo() {
@@ -12,22 +13,22 @@ public class ServicoEmprestimo {
         IRegraEmprestimo regra = usuario.getRegraEmprestimo();
 
         if (!regra.podeEmprestar(livro, usuario)) {
-            System.out.println("Empréstimo negado.");
+            System.out.println("Emprestimo negado.");
             return false;
         }
 
         Exemplar exemplar = livro.obterExemplarDisponivel();
         if (exemplar == null) {
-            System.out.println("Sem exemplar disponível.");
+            System.out.println("Sem exemplar disponivel.");
             return false;
         }
 
         int dias = regra.getPrazoEmprestimo();
 
         Emprestimo emprestimo = new Emprestimo(usuario, exemplar, dias);
+        exemplar.emprestar();
         usuario.adicionarEmprestimoAtual(emprestimo);
-
-        System.out.println("Empréstimo realizado com sucesso.");
+        System.out.println("Emprestimo realizado com sucesso.");
         return true;
     }
 }
