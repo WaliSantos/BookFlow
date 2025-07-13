@@ -1,7 +1,7 @@
-package src.strategies.emprestimo;
-import src.models.Emprestimo;
-import src.models.Livro;
-import src.models.usuarios.Usuario;
+package strategies.emprestimo;
+import models.Emprestimo;
+import models.Livro;
+import models.usuarios.Usuario;
 
 // Estratégia para alunos
 // O empréstimo de um livro será realizado para um aluno de graduação ou de pós-graduação apenas se:
@@ -59,7 +59,7 @@ public class RegraEmprestimoGraducao implements IRegraEmprestimo {
     // 4: A quantidade de reservas existentes do livro deve ser menor do que a quantidade de exemplares disponíveis, desde que o usuário não tenha uma reserva para esse livro;
     public boolean verificarReservasLivros(Livro livro, Usuario usuario) {
         int reservas = livro.getReservas().size();
-        int exemplares = livro.obterQuantidadeExemplares();
+        int exemplares = livro.getExemplares().size();
 
         if (!usuario.temReservaParaLivro(livro)) {
             return reservas < exemplares;

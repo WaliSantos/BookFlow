@@ -1,8 +1,9 @@
-package src.models;
+package models;
 
 import java.util.ArrayList;
 import java.util.List;
-import src.observers.IObservadorLivro;
+
+import observers.IObservadorLivro;
 
 public class Livro {
     private String codigo;
@@ -82,10 +83,7 @@ public class Livro {
         exemplares.remove(exemplar);
     }
 
-    public int obterQuantidadeExemplares() {
-        return exemplares.size();
-    }    
-    
+      
     public Exemplar obterExemplarDisponivel() {
         for (Exemplar exemplar : exemplares) {
             if (exemplar.isDisponivel()) {

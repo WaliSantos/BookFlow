@@ -1,11 +1,12 @@
-package src.models.usuarios;
+package models.usuarios;
+
+import strategies.emprestimo.IRegraEmprestimo;
+import models.Emprestimo;
+import models.Reserva;
+import models.Livro;
 
 import java.util.ArrayList;
 import java.util.List;
-import src.models.Emprestimo;
-import src.models.Livro;
-import src.models.Reserva;
-import src.strategies.emprestimo.IRegraEmprestimo;
 public class Usuario {
     private String nome;
     private String codigo;
@@ -26,6 +27,14 @@ public class Usuario {
     public String getCodigo() {
         return codigo;
     }
+
+    public List<Emprestimo> getEmprestimosAtuais() {
+        return emprestimosAtuais;
+    }
+    public List<Emprestimo> getEmprestimoPassados() {
+        return EmprestimoPassados;
+    }
+
     public IRegraEmprestimo getRegraEmprestimo() {
         return regraEmprestimo;
     }
@@ -34,24 +43,17 @@ public class Usuario {
         emprestimosAtuais.add(emprestimo);
     }
 
-    public List<Emprestimo> getEmprestimosAtuais() {
-        return emprestimosAtuais;
+    public void adicionarReserva(Livro livro) {
+        Reserva reserva = new Reserva(this, livro);
+        reservas.add(reserva);
+       
     }
 
-    public List<Emprestimo> getEmprestimosPassados() {
-        return EmprestimoPassados;
+    public void removerReserva(Reserva reserva) {
+        reservas.remove(reserva);
     }
 
-    public List<Reserva> getReservas() {
-        return reservas;
-    }
+    
 
-    public boolean temReservaParaLivro(Livro livro) {
-        for (Reserva reserva : reservas) {
-            if (reserva.getLivro().equals(livro)) {
-                return true;
-            }
-        }
-        return false;
-    }
+    
 }

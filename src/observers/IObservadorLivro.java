@@ -1,6 +1,6 @@
-package src.observers;
+package observers;
 
-import src.models.Livro;
+import models.Livro;
 
 public interface IObservadorLivro {
 

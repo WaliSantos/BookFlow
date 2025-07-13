@@ -1,4 +1,5 @@
-package src.models;
+package models;
+
 public class Exemplar {
     private Livro livro;
     private boolean disponivel = true;

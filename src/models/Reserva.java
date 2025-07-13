@@ -1,16 +1,18 @@
-package src.models;
+package models;
 
-import src.models.usuarios.Usuario;
+import models.usuarios.Usuario;
+import java.time.LocalDateTime;
 
 public class Reserva {
     private Usuario usuario;
     private Livro livro;
-    private String dataReserva;
+    private LocalDateTime dataReserva;
 
-    public Reserva(Usuario usuario, Livro livro, String dataReserva) {
+    public Reserva(Usuario usuario, Livro livro) {
         this.usuario = usuario;
         this.livro = livro;
-        this.dataReserva = dataReserva;
+        livro.adicionarReserva(this);
+        this.dataReserva = LocalDateTime.now();
     }
 
 
@@ -20,7 +22,7 @@ public class Reserva {
     public Livro getLivro() {
         return livro;
     }   
-    public String getDataReserva() {
+    public LocalDateTime getDataReserva() {
         return dataReserva;
     }
 }

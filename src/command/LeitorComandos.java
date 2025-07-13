@@ -1,24 +1,22 @@
-
+package command;
 
 import java.util.*;
 import java.util.function.Function;
 
 public class LeitorComandos {
-
     private final Map<String, Function<String[], IComando>> comandosRegistrados = new HashMap<>();
 
-    public LeitorComandos() {
+    public LeitorComandos(){
         registrarComandos();
     }
-
     private void registrarComandos() {
         comandosRegistrados.put("emp", partes -> new ComandoEmprestimo(partes[1], partes[2]));
-        // comandosRegistrados.put("res", partes -> new ComandoReserva(partes[1], partes[2]));
-        // comandosRegistrados.put("liv", partes -> new ComandoConsultaLivro(partes[1]);
-        // comandosRegistrados.put("dev", partes -> new ComandoDevolucao(partes[1], partes[2]));
-        // comandosRegistrados.put("usu", partes -> new ComandoConsultaUsuario(partes[1]));
-        // comandosRegistrados.put("obs", partes -> new ComandoRegistrarObservador(partes[1], partes[2]));
-        // comandosRegistrados.put("ntf", partes -> new ComandoConsultaNotificacoes(partes[1]));
+        comandosRegistrados.put("res", partes -> new ComandoReserva(partes[1], partes[2]));
+        comandosRegistrados.put("dev", partes -> new ComandoDevolucao(partes[1], partes[2]));
+        comandosRegistrados.put("obs", partes -> new ComandoRegistrarObservador(partes[1], partes[2]));
+        comandosRegistrados.put("usu", partes -> new ComandoConsultaUsuario(partes[1]));
+        comandosRegistrados.put("liv", partes -> new ComandoConsultaLivro(partes[2]));
+        comandosRegistrados.put("ntf", partes -> new ComandoConsultaNotificacoes(partes[1]));
         comandosRegistrados.put("sai", partes -> () -> System.exit(0)); // comando inline
     }
 

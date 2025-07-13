@@ -1,9 +1,9 @@
-package src.strategies.emprestimo;
+package strategies.emprestimo;
 
-import src.models.Emprestimo;
-import src.models.Exemplar;
-import src.models.Livro;
-import src.models.usuarios.Usuario;
+import models.Emprestimo;
+import models.Exemplar;
+import models.Livro;
+import models.usuarios.Usuario;
 
 public class ServicoEmprestimo {
     public ServicoEmprestimo() {

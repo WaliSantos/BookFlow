@@ -1,7 +1,7 @@
-package src.strategies.emprestimo;
-import src.models.Emprestimo;
-import src.models.Livro;
-import src.models.usuarios.Usuario;
+package strategies.emprestimo;
+import models.Emprestimo;
+import models.Livro;
+import models.usuarios.Usuario;
 
 // Estratégia para alunos da pós-graduação
 // O empréstimo de um livro será realizado para um aluno de graduação ou de pós-graduação apenas se:

@@ -1,11 +1,11 @@
-package src.models.usuarios;
+package models.usuarios;
 
-import src.strategies.emprestimo.IRegraEmprestimo;
+import strategies.emprestimo.IRegraEmprestimo;
 
 public class AlunoGraduacao extends Usuario {
     public AlunoGraduacao(String nome, String codigo) {
         super(nome, codigo);
-        this.regraEmprestimo = new src.strategies.emprestimo.RegraEmprestimoGraducao();
+        this.regraEmprestimo = new strategies.emprestimo.RegraEmprestimoGraducao();
     }
 
     public IRegraEmprestimo getRegraEmprestimo() {

@@ -1,6 +1,6 @@
-package src.models;
+package models;
 
-import src.models.usuarios.Usuario;
+import models.usuarios.Usuario;
 
 public class Emprestimo {
     private Usuario usuario;
@@ -18,15 +18,8 @@ public class Emprestimo {
     public Usuario getUsuario() {
         return usuario;
     }
-
-    public Exemplar getExemplar() { 
-        return exemplar;
-    }
-
-    public Livro getLivro() {
-        return exemplar.getLivro();
-    }
-
+    public Exemplar getExemplar() { return exemplar;
+    }  
     public int getPrazoEmprestimo() {
         return prazoEmprestimo;
     }

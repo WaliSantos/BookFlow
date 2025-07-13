@@ -1,6 +1,6 @@
-package src.strategies.emprestimo;
-import src.models.Livro;
-import src.models.usuarios.Usuario;
+package strategies.emprestimo;
+import models.Livro;
+import models.usuarios.Usuario;
 
 // O empréstimo do livro só será concretizado para um professor se:
 // 1. Houver a disponibilidade de algum exemplar daquele livro na biblioteca; e

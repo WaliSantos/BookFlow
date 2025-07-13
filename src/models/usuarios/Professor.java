@@ -1,15 +1,15 @@
-package src.models.usuarios;
+package models.usuarios;
 
-import src.models.Livro;
-import src.observers.IObservadorLivro;
-import src.strategies.emprestimo.IRegraEmprestimo;
+import models.Livro;
+import observers.IObservadorLivro;
+import strategies.emprestimo.IRegraEmprestimo;
 
 public class Professor extends Usuario implements IObservadorLivro {
     private int totalNotificacoes = 0;
 
     public Professor(String nome, String codigo) {
         super(nome, codigo);
-        this.regraEmprestimo = new src.strategies.emprestimo.RegraEmprestimoProfessor();
+        this.regraEmprestimo = new strategies.emprestimo.RegraEmprestimoProfessor();
     }
 
 

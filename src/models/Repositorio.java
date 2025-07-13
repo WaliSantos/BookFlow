@@ -1,61 +1,40 @@
-package src.models;
+package models;
 
-import java.util.ArrayList;
 import java.util.List;
-import src.models.usuarios.Usuario;
+import java.util.ArrayList;
+
+import models.usuarios.Usuario;
+
 
 public class Repositorio {
-    private static Repositorio instance;
-
-    private List<Livro> livros =new ArrayList<>();
+    private static Repositorio instancia;
     private List<Usuario> usuarios = new ArrayList<>();
+    private List<Livro> livros = new ArrayList<>();
 
     private Repositorio() {
-
+        // Constructor privado para evitar instanciación externa
     }
-
-    public static Repositorio getInstance() {
-        if (instance == null) {
-            instance = new Repositorio();
+    public static Repositorio getInstancia() {
+        if (instancia == null) {
+            instancia = new Repositorio();
         }
-        return instance;
+        return instancia;
+    }
+    public Usuario obterUsuarioPorCodigo(String codigo) {
+        for (Usuario usuario : usuarios) {
+            if (usuario.getCodigo().equals(codigo)) {
+                return usuario;
+            }  
+        }
+        return null; 
     }
 
-    public List<Livro> getLivros() {
-        return livros;
-    }
-    
-    public List<Usuario> getUsuarios() {
-        return usuarios;
-    }
-    public void adicionarLivro(Livro livro) {
-        livros.add(livro);
-    }
-    public void adicionarUsuario(Usuario usuario) {
-        usuarios.add(usuario);
-    }
-    public void removerLivro(Livro livro) {
-        livros.remove(livro);
-    } 
-    public void removerUsuario(Usuario usuario) {
-        usuarios.remove(usuario);
-    }
-    public Livro buscarLivroPorCodigo(String codigo) {
+    public Livro obterLivroPorCodigo(String codigo) {
         for (Livro livro : livros) {
-            if (livro.getCodigo().equalsIgnoreCase(codigo)) {
+            if (livro.getCodigo().equals(codigo)) {
                 return livro;
             }
         }
         return null; 
     }
-    public Usuario buscarUsuarioPorCodigo(String codigo) {
-        for (Usuario usuario : usuarios) {
-            if (usuario.getCodigo().equalsIgnoreCase(codigo)) {
-                return usuario;
-            }
-        }
-        return null; 
-    }
-    
-    
 }

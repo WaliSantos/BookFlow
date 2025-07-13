@@ -1,16 +1,10 @@
-package src.strategies.emprestimo;
+package strategies.emprestimo;
 
-import src.models.Livro;
-import src.models.usuarios.Usuario;
+import models.Livro;
+// import models.Repositorio;
+import models.usuarios.Usuario;
 
 public interface IRegraEmprestimo {
     int getPrazoEmprestimo();
     boolean podeEmprestar(Livro livro, Usuario usuario);
-
-    
 }
-
-
-
-
-
