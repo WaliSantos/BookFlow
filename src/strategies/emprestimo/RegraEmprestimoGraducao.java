@@ -57,19 +57,19 @@ public class RegraEmprestimoGraducao implements IRegraEmprestimo {
     
     // 4: A quantidade de reservas existentes do livro deve ser menor do que a quantidade de exemplares disponíveis, desde que o usuário não tenha uma reserva para esse livro;
     public boolean verificarReservasLivros(Livro livro, Usuario usuario) {
+        if (usuario.temReservaParaLivro(livro)) {
+            return true;
+        }
+
         int reservas = livro.getReservas().size();
         int exemplares = livro.getExemplares().size();
 
-        if (!usuario.temReservaParaLivro(livro)) {
-            return reservas < exemplares;
-        }
-
-        return reservas >= exemplares && reservas > 0;
+        return reservas < exemplares;
     }
 
     // 5: Se a quantidade de reservas for igual ou superior à de exemplares disponíveis, o empréstimo será permitido apenas se uma das reservas for do usuário;
     public boolean verificarReservasUsuario(Livro livro, Usuario usuario) {
-        int reservas = usuario.getReservas().size();
+        int reservas = livro.getReservas().size();
         int exemplares = livro.getExemplares().size();
 
         if (reservas >= exemplares) {

@@ -26,6 +26,12 @@ public class ServicoEmprestimo {
         int dias = regra.getPrazoEmprestimo();
 
         Emprestimo emprestimo = new Emprestimo(usuario, exemplar, dias);
+
+        if (usuario.temReservaParaLivro(livro)) {
+            usuario.removerReserva(livro);
+            System.out.println("Reserva removida para realizar emprestimo.");
+        }
+        
         exemplar.emprestar();
         usuario.adicionarEmprestimoAtual(emprestimo);
         System.out.println("Emprestimo realizado com sucesso.");

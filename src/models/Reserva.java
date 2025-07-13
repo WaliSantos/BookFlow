@@ -11,7 +11,8 @@ public class Reserva {
     public Reserva(Usuario usuario, Livro livro) {
         this.usuario = usuario;
         this.livro = livro;
-        livro.adicionarReserva(this);
+       
+        usuario.adicionarReserva(this);
         this.dataReserva = LocalDateTime.now();
     }
 

@@ -13,13 +13,16 @@ public class Usuario {
     private String codigo;
     protected IRegraEmprestimo regraEmprestimo;
 
-    private List<Emprestimo> emprestimosAtuais = new ArrayList<>();
-    private List<Emprestimo> EmprestimoPassados = new ArrayList<>();
-    private List<Reserva> reservas = new ArrayList<>();
+    private List<Emprestimo> emprestimosAtuais;
+    private List<Emprestimo> EmprestimoPassados;
+    private List<Reserva> reservas;
 
     public Usuario(String nome, String codigo) {
         this.nome = nome;
         this.codigo = codigo;
+        this.emprestimosAtuais = new ArrayList<>();
+        this.EmprestimoPassados = new ArrayList<>();
+        this.reservas = new ArrayList<>();
     }
 
     public String getNome() {
@@ -35,8 +38,18 @@ public class Usuario {
     public List<Emprestimo> getEmprestimoPassados() {
         return EmprestimoPassados;
     }
+
+    public Emprestimo buscarEmprestimoDoLivro(Livro livro) {
+        for (Emprestimo emprestimo : emprestimosAtuais) {
+            if (emprestimo.getExemplar().getLivro().equals(livro)) {
+                return emprestimo;
+            }
+        }
+        return null;
+    }
     public boolean temEmprestimoDeLivro(Livro livro) {
         for (Emprestimo emprestimo : emprestimosAtuais) {
+            System.out.println("Usuário tem o livro: " + emprestimo.getExemplar().getLivro().getCodigo());
             if (emprestimo.getExemplar().getLivro().equals(livro)) {
                 return true;
             }
@@ -52,7 +65,13 @@ public class Usuario {
         emprestimosAtuais.add(emprestimo);
     }
     public void removerEmprestimoAtual(Exemplar exemplar) {
-        emprestimosAtuais.removeIf(emprestimo -> emprestimo.getExemplar().equals(exemplar));
+        for (Emprestimo emprestimo : emprestimosAtuais) {
+            if (emprestimo.getExemplar().equals(exemplar)) {
+                emprestimosAtuais.remove(emprestimo);
+                adicionarEmprestimoPassado(exemplar);
+                break;
+            }
+        }
       
     }
     public void adicionarEmprestimoPassado(Exemplar exemplar) {
@@ -69,14 +88,18 @@ public class Usuario {
     public List<Reserva> getReservas(){
         return reservas;
     }
-    public void adicionarReserva(Livro livro) {
-        Reserva reserva = new Reserva(this, livro);
+    public void adicionarReserva(Reserva reserva) {
         reservas.add(reserva);
        
     }
 
-    public void removerReserva(Reserva reserva) {
-        reservas.remove(reserva);
+    public void removerReserva(Livro livro) {
+        for (Reserva reserva : reservas) {
+            if (reserva.getLivro().equals(livro)) {
+                reservas.remove(reserva);
+                break;
+            }   
+        }
     }
     public boolean temReservaParaLivro(Livro livro) {
         for (Reserva reserva : reservas) {

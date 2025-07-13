@@ -13,9 +13,9 @@ public class Livro {
     private String edicao;
     private int anoPublicacao;
 
-    private List<IObservadorLivro> observadores = new ArrayList<>();
-    private List<Reserva> reservas = new ArrayList<>();
-    private List<Exemplar> exemplares = new ArrayList<>();
+    private List<IObservadorLivro> observadores;
+    private List<Reserva> reservas;
+    private List<Exemplar> exemplares;
 
     public Livro(String codigo, String titulo, String editora , String autor, String edicao, int anoPublicacao) {
         this.codigo = codigo;
@@ -24,6 +24,9 @@ public class Livro {
         this.edicao = edicao;
         this.editora = editora;
         this.anoPublicacao = anoPublicacao;
+        this.observadores = new ArrayList<>();
+        this.reservas = new ArrayList<>();
+        this.exemplares = new ArrayList<>();
     }
     
     public String getCodigo() {
@@ -71,8 +74,21 @@ public class Livro {
         }
     }
 
-    public void removerReserva(Reserva reserva) {
-        reservas.remove(reserva);
+    public void removerReserva(Livro livro) {
+        for (Reserva reserva : reservas) { 
+            if (reserva.getLivro().equals(this)) {
+                reservas.remove(reserva);
+                break;
+            }
+        }
+    }
+    public boolean temReserva(Livro livro) {
+        for (Reserva reserva : reservas) {
+            if (reserva.getLivro().equals(livro)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     
