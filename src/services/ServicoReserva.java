@@ -21,7 +21,14 @@ public class ServicoReserva {
 
             return false;
         }
-        usuario.adicionarReserva(new Reserva(usuario, livro));
+        if (livro.temReserva()) {
+            System.out.println("Reserva negada. Livro ja possui reserva.");
+            return false;
+        }
+        Reserva reserva = new Reserva(usuario, livro);
+        System.out.println(usuario.getReservas());
+        livro.adicionarReserva(reserva);
+        System.out.println(livro.getReservas());
         System.out.println("Reserva realizada com sucesso.");
         return true;
     }

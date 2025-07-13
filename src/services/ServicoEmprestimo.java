@@ -33,6 +33,10 @@ public class ServicoEmprestimo {
             usuario.removerReserva(livro);
             System.out.println("Reserva removida para realizar emprestimo.");
         }
+        if(livro.temReserva()){
+            livro.removerReserva();
+            System.out.println("Reserva removida do livro.");
+        }
         
         exemplar.emprestar();
         usuario.adicionarEmprestimoAtual(emprestimo);

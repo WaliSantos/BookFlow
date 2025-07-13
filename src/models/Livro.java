@@ -75,7 +75,7 @@ public class Livro {
         }
     }
 
-    public void removerReserva(Livro livro) {
+    public void removerReserva() {
         for (Reserva reserva : reservas) { 
             if (reserva.getLivro().equals(this)) {
                 reservas.remove(reserva);
