@@ -22,6 +22,7 @@ public class ServicoReserva {
             return false;
         }
         if (livro.temReserva()) {
+            livro.notificarObservadores();
             System.out.println("Reserva negada. Livro ja possui reserva.");
             return false;
         }

@@ -12,8 +12,6 @@ public class Professor extends Usuario implements IObservadorLivro {
         this.regraEmprestimo = new strategies.emprestimo.RegraEmprestimoProfessor();
     }
 
-
-    @Override
     public void notificar(Livro livro) {
         totalNotificacoes++;
         System.out.println("Professor " + this.getNome() + " foi notificado sobre o livro " + livro.getTitulo());

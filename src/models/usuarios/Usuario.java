@@ -12,6 +12,7 @@ import java.util.List;
 public class Usuario {
     private String nome;
     private String codigo;
+    private int totalNotificacoes;
     protected IRegraEmprestimo regraEmprestimo;
 
     private List<Emprestimo> emprestimosAtuais;
@@ -32,7 +33,9 @@ public class Usuario {
     public String getCodigo() {
         return codigo;
     }
-
+    public int getTotalNotificacoes() {
+        return totalNotificacoes;
+    }
     public List<Emprestimo> getEmprestimosAtuais() {
         return emprestimosAtuais;
     }
@@ -120,6 +123,10 @@ public class Usuario {
     }
     public IObservadorLivro comoObservadorLivro() {
         return null; 
+    }
+
+    public void notificar(Livro livro) {
+        System.out.println("Usuario não é um professor!");
     }
 
     
