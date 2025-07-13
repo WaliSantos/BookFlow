@@ -1,5 +1,10 @@
 package command;
 
+import models.Livro;
+import models.Repositorio;
+import models.usuarios.Usuario;
+import services.ServicoDevolucao;
+
 public class ComandoDevolucao implements IComando {
     private String codigoLivro;
     private String codigoUsuario;
@@ -11,7 +16,12 @@ public class ComandoDevolucao implements IComando {
     }
 
     public void executar(){
-        
+        Repositorio repo = Repositorio.getInstancia();
+
+        Livro livro = repo.obterLivroPorCodigo(codigoLivro);
+        Usuario usuario = repo.obterUsuarioPorCodigo(codigoUsuario);
+
+        new ServicoDevolucao().realizarDevolucao(usuario, livro);
     }
 }
 

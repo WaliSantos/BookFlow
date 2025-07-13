@@ -87,6 +87,14 @@ public class Livro {
     public void removerExemplar(Exemplar exemplar) {
         exemplares.remove(exemplar);
     }
+    public boolean temExemplarEmprestado() {
+        for (Exemplar exemplar : exemplares) {
+            if (!exemplar.isDisponivel()) {
+                return true;
+            }
+        }
+        return false;
+    }
  
     public Exemplar obterExemplarDisponivel() {
         for (Exemplar exemplar : exemplares) {
