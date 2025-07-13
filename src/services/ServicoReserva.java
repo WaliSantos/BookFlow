@@ -11,8 +11,8 @@ public class ServicoReserva {
             System.out.println("Reserva negada. Usuario ja possui emprestimo deste livro.");
             return false;
         }
-        if (livro.temExemplarEmprestado()) {
-            System.out.println("Reserva negada. Nenhum exemplar disponivel para reserva.");
+        if (livro.obterExemplarDisponivel() != null) {
+            System.out.println("Reserva negada. Ainda há exemplar disponível, não é necessário reservar.");
             return false;
         }
 

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import observers.IObservadorLivro;
+import models.usuarios.Usuario;
 
 public class Livro {
     private String codigo;
@@ -82,14 +83,29 @@ public class Livro {
             }
         }
     }
-    public boolean temReserva(Livro livro) {
+    public void remorverReservaUsuario(Usuario usuario) {
         for (Reserva reserva : reservas) {
-            if (reserva.getLivro().equals(livro)) {
+            if (reserva.getUsuario().equals(usuario)) {
+                reservas.remove(reserva);
+                break;
+            }
+        }
+    }
+    public boolean temReserva() {
+        for (Reserva reserva : reservas) {
+            if (reserva.getLivro().equals(this)) {
                 return true;
             }
         }
         return false;
     }
+    public Usuario getPrimeiroUsuarioReserva() {
+        if (reservas.isEmpty()) {
+            return null; 
+        }
+        return reservas.get(0).getUsuario();
+    }
+
 
     
     public List<Exemplar> getExemplares() {

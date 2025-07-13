@@ -37,6 +37,9 @@ public class RegraEmprestimoGraducao implements IRegraEmprestimo {
         if (!verificarReservasUsuario(livro, usuario)) {
             return false; // O usuário não tem reserva para o livro
         }
+        if (!verficarPrioridadeAluno(usuario, livro)){
+            return false; // O usuário tem prioridade na reserva
+        }
         return verificarEmprestimosAtuais(usuario, livro);
     }
 
@@ -86,5 +89,21 @@ public class RegraEmprestimoGraducao implements IRegraEmprestimo {
             }
         }
         return true; 
+    }
+
+    public boolean verficarPrioridadeAluno(Usuario usuario, Livro livro) {
+        if (livro.temReserva()) {
+            Usuario primeiroDaFila = livro.getPrimeiroUsuarioReserva();
+            
+            // Só permite o empréstimo se for o usuário que fez a reserva
+            if (!usuario.equals(primeiroDaFila)) {
+                return false; // Outro usuário tentando furar a fila de reserva
+            } else {
+                // Remove a reserva do usuário da fila (ele está pegando o livro reservado)
+                livro.remorverReservaUsuario(primeiroDaFila);
+                return true; // Empréstimo permitido
+            }
+    }   
+        return true; // Se não há reservas, o empréstimo é permitido
     }
 }

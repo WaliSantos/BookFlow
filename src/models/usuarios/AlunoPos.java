@@ -11,4 +11,8 @@ public class AlunoPos extends Usuario {
     public IRegraEmprestimo getRegraEmprestimo() {
         return regraEmprestimo;
     }
+
+    public boolean podeSerObservador(){
+        return false;
+    }
 }

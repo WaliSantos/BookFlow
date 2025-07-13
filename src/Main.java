@@ -11,8 +11,9 @@ public class Main {
 
         // Usuários
         repo.adicionarUsuario(new AlunoGraduacao("João da Silva","123" ));
-        repo.adicionarUsuario(new AlunoPos( "Luiz Fernando Rodrigues","456"));
+        repo.adicionarUsuario(new AlunoGraduacao( "Luiz Fernando Rodrigues","456"));
         repo.adicionarUsuario(new AlunoGraduacao( "Pedro Paulo", "789"));
+        repo.adicionarUsuario(new AlunoGraduacao("Walisson Santos","247" ));
         repo.adicionarUsuario(new Professor("Carlos Lucena","100" ));
 
         // Livros

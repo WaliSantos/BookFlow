@@ -3,6 +3,7 @@ package models.usuarios;
 import strategies.emprestimo.IRegraEmprestimo;
 import models.Emprestimo;
 import models.Reserva;
+import observers.IObservadorLivro;
 import models.Livro;
 import models.Exemplar;
 
@@ -117,6 +118,13 @@ public class Usuario {
             }
         }
         return false;
+    }
+
+    public boolean podeSerObservador() {
+        return false;
+    }
+    public IObservadorLivro comoObservadorLivro() {
+        return null; 
     }
 
     

@@ -26,4 +26,11 @@ public class Professor extends Usuario implements IObservadorLivro {
     public IRegraEmprestimo getRegraEmprestimo() {
         return regraEmprestimo;
     }
+    public boolean podeSerObservador(){
+        return true;
+    }
+    @Override
+    public IObservadorLivro comoObservadorLivro() {
+        return this; 
+    }
 }

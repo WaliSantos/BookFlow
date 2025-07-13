@@ -10,6 +10,13 @@ public class ServicoEmprestimo {
     public ServicoEmprestimo() {
     }
     public boolean realizarEmprestimo(Usuario usuario, Livro livro) {
+        Exemplar exemplar = livro.obterExemplarDisponivel();
+        if (exemplar == null) {
+            System.out.println("Sem exemplar disponivel.");
+            return false;
+        }
+
+        
         IRegraEmprestimo regra = usuario.getRegraEmprestimo();
 
         if (!regra.podeEmprestar(livro, usuario)) {
@@ -17,12 +24,7 @@ public class ServicoEmprestimo {
             return false;
         }
 
-        Exemplar exemplar = livro.obterExemplarDisponivel();
-        if (exemplar == null) {
-            System.out.println("Sem exemplar disponivel.");
-            return false;
-        }
-
+        
         int dias = regra.getPrazoEmprestimo();
 
         Emprestimo emprestimo = new Emprestimo(usuario, exemplar, dias);
