@@ -27,6 +27,8 @@ public class ServicoDevolucao {
 
         exemplar.devolver(); 
         usuario.removerEmprestimoAtual(exemplar);
+        usuario.adicionarEmprestimoPassado(emprestimo);
+        System.out.println(usuario.getEmprestimoPassados());
         System.out.println("Devolucao realizada com sucesso.");
         return true;
 

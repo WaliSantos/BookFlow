@@ -69,19 +69,14 @@ public class Usuario {
         for (Emprestimo emprestimo : emprestimosAtuais) {
             if (emprestimo.getExemplar().equals(exemplar)) {
                 emprestimosAtuais.remove(emprestimo);
-                adicionarEmprestimoPassado(exemplar);
                 break;
             }
         }
       
     }
-    public void adicionarEmprestimoPassado(Exemplar exemplar) {
-        for (Emprestimo emprestimo : emprestimosAtuais) {
-            if (emprestimo.getExemplar().equals(exemplar)) {
-                EmprestimoPassados.add(emprestimo);
-                break;
-            }
-        }
+    public void adicionarEmprestimoPassado(Emprestimo emprestimo) {
+        EmprestimoPassados.add(emprestimo);
+        
     }
     public void removerEmprestimoPassado(Emprestimo emprestimo) { 
         EmprestimoPassados.remove(emprestimo);

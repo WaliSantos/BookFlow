@@ -26,6 +26,7 @@ public class ServicoReserva {
             return false;
         }
         Reserva reserva = new Reserva(usuario, livro);
+        usuario.adicionarReserva(reserva);
         System.out.println(usuario.getReservas());
         livro.adicionarReserva(reserva);
         System.out.println(livro.getReservas());
