@@ -38,6 +38,9 @@ public class RegraEmprestimoPos implements IRegraEmprestimo {
         if (!verificarReservasUsuario(livro, usuario)) {
             return false; // O usuário não tem reserva para o livro
         }
+        if (!verficarPrioridadeAluno(usuario, livro)){
+            return false; // O usuário tem prioridade na reserva
+        }
         return verificarEmprestimosAtuais(usuario, livro);
     }
 
@@ -53,7 +56,7 @@ public class RegraEmprestimoPos implements IRegraEmprestimo {
     
     // 3: O usuário seguir as regras específicas referentes à quantidade máxima de livros que podem ser emprestados
     public boolean verificarQuantidadeMaximaLivros(Usuario usuario) {
-        return usuario.getEmprestimosAtuais().size() < 2; 
+        return usuario.getEmprestimosAtuais().size() < 3; 
     }
     
     // 4: A quantidade de reservas existentes do livro deve ser menor do que a quantidade de exemplares disponíveis, desde que o usuário não tenha uma reserva para esse livro;
@@ -88,4 +91,21 @@ public class RegraEmprestimoPos implements IRegraEmprestimo {
         }
         return true; 
     }
+
+    public boolean verficarPrioridadeAluno(Usuario usuario, Livro livro) {
+        if (livro.temReserva()) {
+            Usuario primeiroDaFila = livro.getPrimeiroUsuarioReserva();
+            
+            // Só permite o empréstimo se for o usuário que fez a reserva
+            if (!usuario.equals(primeiroDaFila)) {
+                return false; // Outro usuário tentando furar a fila de reserva
+            } else {
+                // Remove a reserva do usuário da fila (ele está pegando o livro reservado)
+                livro.remorverReservaUsuario(primeiroDaFila);
+                return true; // Empréstimo permitido
+            }
+    }   
+        return true; // Se não há reservas, o empréstimo é permitido
+    }
 }
+
